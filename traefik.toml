@@ -1,0 +1,110 @@
+################################################################
+# Global configuration
+################################################################
+
+defaultEntryPoints = ["https", "http"]
+
+[entryPoints]
+  [entryPoints.http]
+  address = ":80"
+    [entryPoints.http.redirect]
+    entryPoint = "https"
+  [entryPoints.https]
+  address = ":443"
+  [entryPoints.https.tls]
+
+[retry]
+
+# Traefik logs
+# Enabled by default and log to stdout
+#
+# Optional
+#
+# [traefikLog]
+
+# Sets the filepath for the traefik log. If not specified, stdout will be used.
+# Intermediate directories are created if necessary.
+#
+# Optional
+# Default: os.Stdout
+#
+# filePath = "log/traefik.log"
+
+# Format is either "json" or "common".
+#
+# Optional
+# Default: "common"
+#
+# format = "common"
+
+# Enable access logs
+# By default it will write to stdout and produce logs in the textual
+# Common Log Format (CLF), extended with additional fields.
+#
+# Optional
+#
+# [accessLog]
+
+# Sets the file path for the access log. If not specified, stdout will be used.
+# Intermediate directories are created if necessary.
+#
+# Optional
+# Default: os.Stdout
+#
+# filePath = "/path/to/log/log.txt"
+
+# Format is either "json" or "common".
+#
+# Optional
+# Default: "common"
+#
+# format = "common"
+
+################################################################
+# Web configuration backend
+################################################################
+
+# Enable web configuration backend
+[web]
+
+# Web administration port
+#
+# Required
+#
+address = ":8080"
+
+################################################################
+# Docker configuration backend
+################################################################
+
+# Enable Docker configuration backend
+[docker]
+endpoint = "unix:///var/run/docker.sock"
+domain = "ceroku.me"
+watch = true
+exposedbydefault = false
+
+# Default domain used.
+# Can be overridden by setting the "traefik.domain" label on a container.
+#
+# Optional
+# Default: ""
+#
+# domain = "docker.localhost"
+
+# Expose containers by default in traefik
+#
+# Optional
+# Default: true
+#
+# exposedbydefault = true
+
+################################################################
+# LetsEncrypt configuration
+################################################################
+
+[acme]
+email = "acme@ceroku.me"
+storage = "acme.json"
+entryPoint = "https"
+OnHostRule = true
