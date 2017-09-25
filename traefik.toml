@@ -66,12 +66,11 @@ defaultEntryPoints = ["https", "http"]
 
 # Enable web configuration backend
 [web]
-
-# Web administration port
-#
-# Required
-#
 address = ":8080"
+readOnly = true
+
+[web.auth.basic]
+users = ["admin:$apr1$ku.q.pEB$8fwUkTvqhxGknRMH1MS9O/"] # admin:admin
 
 ################################################################
 # Docker configuration backend
@@ -108,3 +107,4 @@ email = "acme@ceroku.me"
 storage = "acme.json"
 entryPoint = "https"
 OnHostRule = true
+caServer = "https://acme-staging.api.letsencrypt.org/directory"
