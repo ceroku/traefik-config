@@ -79,24 +79,9 @@ users = ["admin:$apr1$ku.q.pEB$8fwUkTvqhxGknRMH1MS9O/"] # admin:admin
 # Enable Docker configuration backend
 [docker]
 endpoint = "unix:///var/run/docker.sock"
-domain = "ceroku.me"
 watch = true
 exposedbydefault = false
-
-# Default domain used.
-# Can be overridden by setting the "traefik.domain" label on a container.
-#
-# Optional
-# Default: ""
-#
 # domain = "docker.localhost"
-
-# Expose containers by default in traefik
-#
-# Optional
-# Default: true
-#
-# exposedbydefault = true
 
 ################################################################
 # LetsEncrypt configuration
